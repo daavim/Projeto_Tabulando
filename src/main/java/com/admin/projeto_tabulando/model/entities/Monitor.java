@@ -2,11 +2,11 @@ package com.admin.projeto_tabulando.model.entities;
 
 public class Monitor {
     private String nome;
-    private String contato;
+    private SalaDeJogos sala;
 
-    public Monitor(String nome, String contato) {
+    public Monitor(String nome, SalaDeJogos sala) {
         this.nome = nome;
-        this.contato = contato;
+        this.sala = sala;
     }
 
     public String getNome() {
@@ -17,11 +17,4 @@ public class Monitor {
         this.nome = nome;
     }
 
-    public String getContato() {
-        return contato;
-    }
-
-    public void setContato(String contato) {
-        this.contato = contato;
-    }
 }

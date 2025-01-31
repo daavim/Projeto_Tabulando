@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 
 public interface SalaDeJogosDao {
-    ArrayList<Jogo> exibir_disponibilade();
+    ArrayList<Jogo> JogosDisponiveis();
 }
