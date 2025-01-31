@@ -10,6 +10,7 @@ import java.sql.Connection;
 public class MonitorDaoJDBC implements MonitorDao {
     private Connection conn;
 
+
     public MonitorDaoJDBC(Connection conn) {
         this.conn = conn;
     }
