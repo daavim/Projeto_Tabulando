@@ -9,5 +9,5 @@ import java.util.List;
 public interface JogoDao {
     boolean iniciarJogo (List<Jogador> jogador, Jogo jogo) throws SQLException;
     void finalizarJogo (Jogo jogo);
-    boolean estaDispnivel (Jogo jogo);
+    boolean estaDisponivel (Jogo jogo);
 }

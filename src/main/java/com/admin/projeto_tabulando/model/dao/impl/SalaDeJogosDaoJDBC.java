@@ -22,7 +22,7 @@ public class SalaDeJogosDaoJDBC implements SalaDeJogosDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM jogo WHERE disponivel = true");
+            st = conn.prepareStatement("SELECT * FROM Jogo WHERE disponivel = true");
             rs = st.executeQuery();
 
             ArrayList<Jogo> jogos = new ArrayList<>();

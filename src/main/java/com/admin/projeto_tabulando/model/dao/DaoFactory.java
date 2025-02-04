@@ -1,10 +1,7 @@
 package com.admin.projeto_tabulando.model.dao;
 
 import com.admin.projeto_tabulando.db.DB;
-import com.admin.projeto_tabulando.model.dao.impl.JogadorDaoJDBC;
-import com.admin.projeto_tabulando.model.dao.impl.JogoDaoJDBC;
-import com.admin.projeto_tabulando.model.dao.impl.MonitorDaoJDBC;
-import com.admin.projeto_tabulando.model.dao.impl.SalaDeJogosDaoJDBC;
+import com.admin.projeto_tabulando.model.dao.impl.*;
 
 public interface DaoFactory {
     public static JogoDao createJogoDao(){
@@ -18,5 +15,8 @@ public interface DaoFactory {
     }
     public static SalaDeJogosDao createSalaDeJogosDao(){
         return new SalaDeJogosDaoJDBC(DB.getConnection());
+    }
+    public static AuthDao createAuthDao(){
+        return new AuthDaoJDBC(DB.getConnection());
     }
 }

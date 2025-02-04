@@ -8,6 +8,6 @@ public interface MonitorDao {
     void removerJogador(Jogador jogador);
     void encerrarJogo(Jogo Jogo);
     void liberarJogo(Jogo jogo);
-    void adicionarJogo(Jogo jogo);
+    void adicionarJogo(String nome, String tipo, int maxJogadores, Jogo jogo);
     void removerJogo(Jogo jogo);
 }

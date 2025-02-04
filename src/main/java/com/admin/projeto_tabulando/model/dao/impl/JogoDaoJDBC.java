@@ -23,14 +23,14 @@ public class JogoDaoJDBC implements JogoDao {
         try {
             conn.setAutoCommit(false);
 
-            st = conn.prepareStatement("UPDATE jogo SET disponivel = false WHERE id = ?");
-            st.setInt(1, obterIdJogo(jogo));
+            st = conn.prepareStatement("UPDATE jogo SET disponivel = false WHERE ID_jogo = ?");
+            st.setInt(1, jogo.getId());
             st.executeUpdate();
 
-            st = conn.prepareStatement("INSERT INTO jogo_jogador (jogo_id, jogador_id) VALUES ( ?, ? )");
+            st = conn.prepareStatement("INSERT INTO Jogador_Jogo (ID_jogador, ID_jogo) VALUES ( ?, ? )");
             for (Jogador jogador : jogadores) {
-                st.setInt(1, obterIdJogo(jogo));
-                st.setInt(2, obterIdJogador(jogador));
+                st.setInt(1, jogo.getId());
+                st.setInt(2, jogador.getId());
                 st.addBatch();
             }
             st.executeBatch();
@@ -39,9 +39,11 @@ public class JogoDaoJDBC implements JogoDao {
             return true;
 
         } catch (SQLException e){
+            try { conn.rollback(); } catch (SQLException ex) { /* Tratar erro */ }
             throw new RuntimeException("Erro ao iniciar jogo", e);
         } finally {
             DB.closeStatement(st);
+            try { conn.setAutoCommit(true); } catch (SQLException e) { /* Tratar erro */ }
         }
 
     }
@@ -52,12 +54,12 @@ public class JogoDaoJDBC implements JogoDao {
         try {
             conn.setAutoCommit(false);
 
-            st = conn.prepareStatement("UPDATE jogo SET disponivel = true WHERE id = ?");
-            st.setInt(1, obterIdJogo(jogo));
+            st = conn.prepareStatement("UPDATE Jogo SET disponivel = true WHERE ID_jogo = ?");
+            st.setInt(1, jogo.getId());
             st.executeUpdate();
 
-            st = conn.prepareStatement("DELETE FROM jogo_jogador WHERE jogo_id = ?");
-            st.setInt(1, obterIdJogo(jogo));
+            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogo = ?");
+            st.setInt(1, jogo.getId());
             st.executeUpdate();
 
             conn.commit();
@@ -72,32 +74,8 @@ public class JogoDaoJDBC implements JogoDao {
     }
 
     @Override
-    public boolean estaDispnivel(Jogo jogo) {
+    public boolean estaDisponivel(Jogo jogo) {
         return jogo.isDisponivel();
     }
 
-
-    private int obterIdJogador(Jogador jogador) throws SQLException {
-        PreparedStatement st = conn.prepareStatement(
-                "SELECT id FROM jogador WHERE nome = ?"
-        );
-        st.setString(1, jogador.getNome());
-        ResultSet rs = st.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("id");
-        }
-        throw new SQLException("Jogador não encontrado");
-    }
-
-    private int obterIdJogo(Jogo jogo) throws SQLException {
-        PreparedStatement st = conn.prepareStatement(
-                "SELECT id FROM jogo WHERE nome = ?"
-        );
-        st.setString(1, jogo.getNome());
-        ResultSet rs = st.executeQuery();
-        if (rs.next()) {
-            return rs.getInt("id");
-        }
-        throw new SQLException("Jogo não encontrado");
-    }
 }

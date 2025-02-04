@@ -2,6 +2,7 @@ module com.admin.projeto_tabulando {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires jbcrypt;
 
 
     opens com.admin.projeto_tabulando to javafx.fxml;

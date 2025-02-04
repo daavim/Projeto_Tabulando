@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Jogo {
+    private int id;
     private String nome;
     private String tipo;
     private int maxJogadores;
@@ -56,5 +57,13 @@ public class Jogo {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

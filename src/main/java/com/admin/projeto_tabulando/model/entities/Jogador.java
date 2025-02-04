@@ -3,12 +3,13 @@ package com.admin.projeto_tabulando.model.entities;
 import java.util.List;
 
 public class Jogador {
-
+    private int id;
     private String nome;
+    private String usuario;
     private Jogo jogoAtual;
     private List<Jogo> historico;
 
-    public Jogador(String nome, int idade) {
+    public Jogador(String nome) {
         this.nome = nome;
         this.jogoAtual = null;
     }
@@ -35,5 +36,21 @@ public class Jogador {
 
     public void setHistorico(List<Jogo> historico) {
         this.historico = historico;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }
