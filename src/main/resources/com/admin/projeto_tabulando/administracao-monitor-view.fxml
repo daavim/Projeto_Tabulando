@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<AnchorPane fx:id="scenePane" prefHeight="538.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.AdministracaoMonitorController">
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="scenePane" prefHeight="538.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.AdministracaoMonitorController">
     <children>
-        <Label alignment="CENTER" layoutX="51.0" layoutY="29.0" prefHeight="32.0" prefWidth="507.0" text="Bem-vindo Camilly!" textFill="#ee5a0a">
+        <Label alignment="CENTER" layoutX="51.0" layoutY="29.0" prefHeight="32.0" prefWidth="507.0" text="Bem-vindo" textFill="#ee5a0a">
             <font>
                 <Font name="Comic Sans MS" size="27.0" />
             </font>
@@ -14,15 +18,15 @@
                 <Font name="Comic Sans MS" size="20.0" />
             </font>
         </Label>
-        <Button fx:id="jogosMonitores" layoutX="31.0" layoutY="143.0" mnemonicParsing="false" onAction="#menuItemJogosMonitoresOnClicked" text="Adicionar jogo">
+        <Button fx:id="jogosMonitores" layoutX="31.0" layoutY="143.0" mnemonicParsing="false" text="Adicionar jogo">
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>
-        <Button fx:id="Jogos" layoutX="31.0" layoutY="188.0" mnemonicParsing="false" onAction="#menuItemJogosOnClicked" prefHeight="31.0" prefWidth="113.0" text="Remover Jogo">
+        <Button fx:id="Jogos" layoutX="31.0" layoutY="188.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" text="Remover Jogo">
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>
-        <Button layoutX="31.0" layoutY="226.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" text="Liberar Jogo">
+        <Button layoutX="31.0" layoutY="227.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="113.0" text="Liberar Jogo">
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>
@@ -45,5 +49,10 @@
             </font>
         </Button>
         <Separator layoutX="-1.0" layoutY="445.0" prefHeight="6.0" prefWidth="603.0" />
+      <Label fx:id="nomeadm" alignment="CENTER" layoutX="51.0" layoutY="67.0" prefHeight="32.0" prefWidth="507.0" textFill="#ee5a0a">
+         <font>
+            <Font name="Comic Sans MS" size="27.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

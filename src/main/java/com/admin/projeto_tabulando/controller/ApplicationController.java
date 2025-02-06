@@ -53,19 +53,35 @@ public class ApplicationController {
         Jogador jogador = DaoFactory.createAuthDao().autenticarJogador(usuarioJogador, senhaJogador);
 
         if (jogador != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/login-view.fxml"));
-            Parent root = loader.load();
 
-            LoginController loginController = loader.getController();
-            loginController.setNomeJogador(jogador.getNome()); // Define o nome no controller
+            if (usuarioJogador.equals("admin")) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/administracao-monitor-view.fxml"));
+                Parent root = loader.load();
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
+                AdministracaoMonitorController monitorController = loader.getController();
+                monitorController.setNomeAdmin(jogador.getNome());
 
-            // Fecha a janela atual se necessário
-            Stage currentStage = (Stage) usuario.getScene().getWindow();
-            currentStage.close();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                Stage currentStage = (Stage) usuario.getScene().getWindow();
+                currentStage.close();
+            } else {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/login-view.fxml"));
+                Parent root = loader.load();
+
+                LoginController loginController = loader.getController();
+                loginController.setNomeJogador(jogador.getNome());
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+
+                Stage currentStage = (Stage) usuario.getScene().getWindow();
+                currentStage.close();
+            }
+
         } else {
             System.out.println("Credenciais inválidas");
         }

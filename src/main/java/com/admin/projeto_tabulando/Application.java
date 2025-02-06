@@ -20,7 +20,8 @@ public class Application extends javafx.application.Application {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
-        stage.setOnCloseRequest(e -> {
+        stage.setOnCloseRequest(event -> {
+            event.consume();
             sair(stage);
         });
 

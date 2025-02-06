@@ -73,6 +73,31 @@ public class JogoDaoJDBC implements JogoDao {
         }
     }
 
+
+    @Override
+    public List<Jogo> procurarTodosDisponivel() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogo WHERE disponivel = true");
+            rs = st.executeQuery();
+
+            List<Jogo> lista = new ArrayList<>();
+
+            while (rs.next()) {
+                Jogo jogo = new Jogo(rs.getString("nome"), rs.getString("tipo"), rs.getInt("maxJogadores"));
+                jogo.setId(rs.getInt("ID_jogo"));
+                    lista.add(jogo);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
     @Override
     public boolean estaDisponivel(Jogo jogo) {
         return jogo.isDisponivel();

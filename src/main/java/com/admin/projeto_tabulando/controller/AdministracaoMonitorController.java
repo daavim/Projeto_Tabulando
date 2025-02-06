@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,8 +29,14 @@ public class AdministracaoMonitorController {
     private Button BotaoSair;
     @FXML
     private AnchorPane scenePane;
+    @FXML
+    private Label nomeadm;
 
-    Stage stage;
+    public static Stage stage;
+
+    public void setNomeAdmin(String nomeJogador) {
+        nomeadm.setText(nomeJogador); // Define o texto do label
+    }
 
     public void menuItemSairOnClicked(ActionEvent event) {
 
@@ -44,6 +51,10 @@ public class AdministracaoMonitorController {
             stage.close();
         }
 
+    }
+
+    public static Stage getStage(){
+        return stage;
     }
 
 

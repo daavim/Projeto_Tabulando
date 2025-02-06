@@ -10,4 +10,5 @@ public interface JogoDao {
     boolean iniciarJogo (List<Jogador> jogador, Jogo jogo) throws SQLException;
     void finalizarJogo (Jogo jogo);
     boolean estaDisponivel (Jogo jogo);
+    List<Jogo> procurarTodosDisponivel();
 }
