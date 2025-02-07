@@ -53,6 +53,22 @@ public class AdministracaoMonitorController {
 
     }
 
+    public void onAdicionarJogoClicked() throws IOException {
+        stage = Application.newStage("jogos-administracao-view.fxml");
+    }
+
+    public void onRemoverJogoClicked() throws IOException {
+        stage = Application.newStage("remover-jogos-adm-view.fxml");
+    }
+
+    public void onEncerrarJogoClicked() throws IOException {
+        stage = Application.newStage("encerrar-jogo-view.fxml");
+    }
+
+    public void onExcluirJogadorClicked() throws IOException {
+        stage = Application.newStage("excluir-jogador-view.fxml");
+    }
+
     public static Stage getStage(){
         return stage;
     }

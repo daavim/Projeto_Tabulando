@@ -99,6 +99,28 @@ public class JogoDaoJDBC implements JogoDao {
     }
 
     @Override
+    public Jogo procurarPorNome(String nome) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        Jogo jogo = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogo WHERE nome = ?");
+            st.setString(1, nome);
+            rs = st.executeQuery();
+
+            if(rs.next()){
+                jogo = new Jogo(nome, rs.getString("tipo"), rs.getInt("maxJogadores"));
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogo;
+    }
+
+    @Override
     public boolean estaDisponivel(Jogo jogo) {
         return jogo.isDisponivel();
     }

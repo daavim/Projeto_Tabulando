@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,37 +11,46 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="347.0" prefWidth="631.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.BuscarJogoController">
+<AnchorPane prefHeight="499.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.BuscarJogoController">
     <children>
-        <GridPane layoutX="14.0" layoutY="14.0" prefHeight="190.0" prefWidth="406.0">
+        <GridPane layoutX="14.0" layoutY="14.0" prefHeight="315.0" prefWidth="613.0">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.20001220703125" minWidth="10.0" prefWidth="88.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="10.0" prefWidth="318.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.20001220703125" minWidth="10.0" prefWidth="181.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="10.0" prefWidth="454.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="78.4" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="78.4" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="377.6" minHeight="10.0" prefHeight="78.4" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label prefHeight="64.0" prefWidth="78.0" text="Jogos" textFill="#e16302">
+                <Label prefHeight="64.0" prefWidth="188.0" text="Jogos Disponiveis" textFill="#e16302">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="18.0" />
                     </font>
                 </Label>
-                <ComboBox fx:id="jogosLista" prefHeight="26.0" prefWidth="314.0" GridPane.columnIndex="1" />
+                <ComboBox fx:id="jogosLista" prefHeight="26.0" prefWidth="377.0" GridPane.columnIndex="1" />
+                <Label layoutX="10.0" layoutY="31.0" prefHeight="64.0" prefWidth="188.0" text="Categoria" textFill="#e16302" GridPane.rowIndex="1">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="categoria" prefHeight="24.0" prefWidth="371.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label layoutX="10.0" layoutY="136.0" prefHeight="64.0" prefWidth="188.0" text="Max Jogadores" textFill="#e16302" GridPane.rowIndex="2">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="maxJogadores" layoutX="180.0" layoutY="156.0" prefHeight="24.0" prefWidth="371.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
-        <ImageView fx:id="foto" accessibleText="Clique aqui para adicionar uma foto" fitHeight="150.0" fitWidth="142.0" layoutX="450.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="28.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Entrar">
+        <ImageView fx:id="foto" accessibleText="Clique aqui para adicionar uma foto" fitHeight="150.0" fitWidth="142.0" layoutX="329.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="203.0" layoutY="422.0" mnemonicParsing="false" onAction="#onEntrarClicked" style="-fx-background-radius: 5;" text="Entrar">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="142.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Atualizar">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <Button layoutX="292.0" layoutY="256.0" mnemonicParsing="false" style="-fx-background-radius: 5;" text="Deletar">
+        <Button layoutX="448.0" layoutY="422.0" mnemonicParsing="false" onAction="#onBuscarInformacoesClicked" style="-fx-background-radius: 5;" text="Informações do Jogo">
             <font>
                 <Font size="18.0" />
             </font>

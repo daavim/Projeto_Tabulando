@@ -11,7 +11,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Application extends javafx.application.Application {
+
     private static Scene scene;
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("application-view.fxml"));
@@ -24,7 +26,6 @@ public class Application extends javafx.application.Application {
             event.consume();
             sair(stage);
         });
-
     }
 
     public static Scene getScene(){
@@ -42,14 +43,12 @@ public class Application extends javafx.application.Application {
     }
 
     public void sair(Stage stage) {
-
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmacao");
         alert.setHeaderText("Você está prestes a sair");
         alert.setContentText("Deseja realmente sair?");
 
         if(alert.showAndWait().get() == ButtonType.OK){
-            System.out.println("Saiu com sucesso");
             stage.close();
         }
 

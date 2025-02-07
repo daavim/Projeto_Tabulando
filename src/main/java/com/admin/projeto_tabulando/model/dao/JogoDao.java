@@ -11,4 +11,5 @@ public interface JogoDao {
     void finalizarJogo (Jogo jogo);
     boolean estaDisponivel (Jogo jogo);
     List<Jogo> procurarTodosDisponivel();
+    Jogo procurarPorNome(String nome);
 }

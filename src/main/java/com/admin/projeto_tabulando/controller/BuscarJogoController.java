@@ -15,14 +15,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import com.admin.projeto_tabulando.utils.Alerta;
-
+import javafx.stage.Stage;
 
 
 public class BuscarJogoController implements Initializable {
@@ -34,6 +36,11 @@ public class BuscarJogoController implements Initializable {
     private TextField maxJogadores;
     @FXML
     private ImageView foto;
+
+    @FXML
+    public static Stage stage;
+
+    Jogo jogo;
 
     File file;
 
@@ -63,18 +70,23 @@ public class BuscarJogoController implements Initializable {
             foto.setImage(new Image(file.getAbsolutePath()));
         }
     }
-    @FXML
-    public void onBuscarJogoClicked(){   //GET todos os jogos
 
-    }
+
 
     @FXML
     public void onBuscarInformacoesClicked(){  // informações do jogo
-
+        if(jogosLista.getValue() != null){
+            jogo = DaoFactory.createJogoDao().procurarPorNome( jogosLista.getValue());
+            categoria.setText(jogo.getTipo());
+            maxJogadores.setText(String.valueOf(jogo.getMaxJogadores()));
+            //Image img = new Image(new ByteArrayInputStream(jogo.getFoto()));
+            //foto.setImage(img);
+        }
     }
 
     @FXML
-    public void onEntrarClicked(){   // Entrar na partida
+    public void onEntrarClicked() throws IOException {   // Entrar na partida
+        stage = Application.newStage("partidas-jogador-view.fxml");
     }
 
 }

@@ -17,7 +17,7 @@
         </ImageView>
         <VBox alignment="CENTER" layoutY="26.0" prefHeight="100.0" prefWidth="773.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label alignment="CENTER" prefHeight="39.0" prefWidth="153.0" style="-fx-background-radius: 5px; -fx-background-color: #000000; -fx-border-width: 5; -fx-border-radius: 5; -fx-border-color: #000000;" text="Bem-Vindo" textFill="#e16302">
+                <Label alignment="CENTER" prefHeight="45.0" prefWidth="212.0" style="-fx-background-radius: 5px; -fx-background-color: #000000; -fx-border-width: 5; -fx-border-radius: 5; -fx-border-color: #000000;" text="Bem-Vindo" textFill="#e16302">
                     <font>
                         <Font size="28.0" />
                     </font>
@@ -34,7 +34,7 @@
                 <Font size="24.0" />
             </font>
         </Button>
-        <Button fx:id="buscar" alignment="CENTER" layoutX="89.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#menuBuscarJogoOnClicked" prefHeight="51.0" prefWidth="238.0" style="-fx-background-color: #e16302; -fx-background-radius: 12;" text="Entrar em um Jogo">
+        <Button fx:id="buscar" alignment="CENTER" layoutX="77.0" layoutY="309.0" mnemonicParsing="false" onMouseClicked="#menuBuscarJogoOnClicked" prefHeight="51.0" prefWidth="273.0" style="-fx-background-color: #e16302; -fx-background-radius: 12;" text="Entrar em um Jogo">
             <font>
                 <Font size="24.0" />
             </font>
