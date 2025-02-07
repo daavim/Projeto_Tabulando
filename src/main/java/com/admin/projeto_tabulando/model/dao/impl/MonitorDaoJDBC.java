@@ -18,11 +18,11 @@ public class MonitorDaoJDBC implements MonitorDao {
 
 
     @Override
-    public void removerJogador(Jogador jogador) {
+    public void removerJogador(int id) {
         PreparedStatement st = null;
         try {
             st = conn.prepareStatement("DELETE FROM Jogador WHERE ID_Jogador = ?");
-            st.setInt(1, jogador.getId());
+            st.setInt(1, id);
             st.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -47,25 +47,6 @@ public class MonitorDaoJDBC implements MonitorDao {
 
     }
 
-    @Override
-    public void liberarJogo(Jogo jogo) {
-        PreparedStatement st = null;
-        try {
-            st = conn.prepareStatement("UPDATE Jogo SET disponivel = true WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-
-            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-            DB.closeStatement(st);
-        }
-
-    }
 
     @Override
     public void adicionarJogo(String nome, String tipo, int maxJogadores, Jogo jogo) {
@@ -73,10 +54,11 @@ public class MonitorDaoJDBC implements MonitorDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("INSERT INTO Jogo (nome, tipo, maxJogador) VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            st = conn.prepareStatement("INSERT INTO Jogo (nome, tipo, maxJogadores, disponivel) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             st.setString(1, nome);
             st.setString(2, tipo);
             st.setInt(3, maxJogadores);
+            st.setBoolean(4, true);
             int linhasAfetadas = st.executeUpdate();
 
             if (linhasAfetadas > 0) {

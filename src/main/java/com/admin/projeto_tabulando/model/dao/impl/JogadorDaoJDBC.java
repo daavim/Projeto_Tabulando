@@ -1,12 +1,14 @@
 package com.admin.projeto_tabulando.model.dao.impl;
 
 import com.admin.projeto_tabulando.db.DB;
+import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.dao.JogadorDao;
 import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JogadorDaoJDBC implements JogadorDao {
@@ -108,6 +110,52 @@ public class JogadorDaoJDBC implements JogadorDao {
         }finally {
             DB.closeStatement(st);
         }
+    }
+
+    @Override
+    public List<Jogador> procurarTodos() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Jogador> Listajogador = new ArrayList<>();
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogador");
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Jogador jogador = new Jogador(rs.getString("nome"));
+                jogador.setId(rs.getInt("ID_jogador"));
+                Listajogador.add(jogador);
+            }
+            return Listajogador;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
+    @Override
+    public Jogador procurarPorNome(String nome) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        Jogador jogador = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogador WHERE nome = ?");
+            st.setString(1, nome);
+            rs = st.executeQuery();
+
+            if(rs.next()){
+                jogador = new Jogador(rs.getString("nome"));
+                jogador.setId(rs.getInt("ID_jogador"));
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogador;
     }
 
 }

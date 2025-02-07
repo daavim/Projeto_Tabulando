@@ -54,7 +54,7 @@ public class AdministracaoMonitorController {
     }
 
     public void onAdicionarJogoClicked() throws IOException {
-        stage = Application.newStage("jogos-administracao-view.fxml");
+        stage = Application.newStage("adicionar-jogo-view.fxml");
     }
 
     public void onRemoverJogoClicked() throws IOException {

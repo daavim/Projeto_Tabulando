@@ -10,4 +10,6 @@ public interface JogadorDao {
     void sairDoJogo(Jogador jogador, Jogo jogo);
     void registrarJogador(String usuario, String senha, Jogador jogador);
     Jogador procurarPorId(int id);
+    List<Jogador> procurarTodos();
+    Jogador procurarPorNome(String nome);
 }

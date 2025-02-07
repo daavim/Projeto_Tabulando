@@ -22,11 +22,11 @@
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>
-        <Button fx:id="Jogos" layoutX="31.0" layoutY="188.0" mnemonicParsing="false" onAction="#onRemoverJogoClicked" prefHeight="31.0" prefWidth="113.0" text="Remover Jogo">
+        <Button fx:id="Jogos" layoutX="31.0" layoutY="188.0" mnemonicParsing="false" onAction="#onRemoverJogoClicked" prefHeight="31.0" prefWidth="113.0" text="Excluir Jogo">
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>
-        <Button layoutX="31.0" layoutY="226.0" mnemonicParsing="false" onAction="#onEncerrarJogoClicked" prefHeight="31.0" prefWidth="113.0" text="Encerrar Jogo">
+        <Button layoutX="31.0" layoutY="226.0" mnemonicParsing="false" onAction="#onEncerrarJogoClicked" prefHeight="31.0" prefWidth="130.0" text="Encerrar Partida">
             <font>
                 <Font name="Comic Sans MS" size="14.0" />
             </font></Button>

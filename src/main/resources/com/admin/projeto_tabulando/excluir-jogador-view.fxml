@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+
 <AnchorPane prefHeight="486.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.ExcluirJogadorController">
     <children>
         <GridPane layoutX="14.0" layoutY="121.0" prefHeight="180.0" prefWidth="467.0">
@@ -20,7 +25,7 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <ComboBox prefHeight="24.0" prefWidth="336.0" GridPane.columnIndex="1" />
+                <ComboBox fx:id="listaJogadores" prefHeight="24.0" prefWidth="336.0" GridPane.columnIndex="1" />
             </children>
         </GridPane>
         <Label alignment="CENTER" layoutX="1.0" layoutY="30.0" prefHeight="30.0" prefWidth="779.0" text="Excluir Jogador" textFill="#e16302">
@@ -28,13 +33,12 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="530.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true" />
         <Button layoutX="552.0" layoutY="387.0" mnemonicParsing="false" text="Voltar">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="152.0" layoutY="387.0" mnemonicParsing="false" text="Excluir">
+        <Button layoutX="152.0" layoutY="387.0" mnemonicParsing="false" onAction="#onExcluirJogadorClicked" text="Excluir">
             <font>
                 <Font size="18.0" />
             </font>

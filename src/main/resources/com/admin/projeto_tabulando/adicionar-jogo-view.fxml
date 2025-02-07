@@ -9,13 +9,13 @@
 
 <AnchorPane prefHeight="528.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.JogosAdministracaoController">
     <children>
-        <ImageView fx:id="foto" accessibleText="Clique aqui para adicionar uma foto" fitHeight="150.0" fitWidth="142.0" layoutX="540.0" layoutY="186.0"  pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="114.0" layoutY="468.0" mnemonicParsing="false"  text="Adicionar">
+        <ImageView fx:id="foto" accessibleText="Clique aqui para adicionar uma foto" fitHeight="150.0" fitWidth="142.0" layoutX="540.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
+        <Button layoutX="114.0" layoutY="468.0" mnemonicParsing="false" onAction="#adicionarOnClicked" text="Adicionar">
             <font>
                 <Font size="18.0" />
             </font>
         </Button>
-        <Button layoutX="533.0" layoutY="468.0" mnemonicParsing="false"  text="Voltar">
+        <Button layoutX="533.0" layoutY="468.0" mnemonicParsing="false" text="Voltar">
             <font>
                 <Font size="18.0" />
             </font>
@@ -25,19 +25,19 @@
                 <Font size="36.0" />
             </font>
         </Label>
-        <TextField layoutX="249.0" layoutY="174.0" prefHeight="24.0" prefWidth="201.0" />
+        <TextField fx:id="nome" layoutX="249.0" layoutY="174.0" prefHeight="24.0" prefWidth="201.0" />
         <Label alignment="CENTER" layoutX="23.0" layoutY="174.0" prefHeight="21.0" prefWidth="91.0" text="Nome" textFill="#e16302">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField layoutX="249.0" layoutY="249.0" prefHeight="24.0" prefWidth="201.0" />
+        <TextField fx:id="categoria" layoutX="249.0" layoutY="249.0" prefHeight="24.0" prefWidth="201.0" />
         <Label alignment="CENTER" layoutX="23.0" layoutY="249.0" prefHeight="30.0" prefWidth="134.0" text="Categorias" textFill="#e16302">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
-        <TextField layoutX="249.0" layoutY="321.0" prefHeight="24.0" prefWidth="201.0" />
+        <TextField fx:id="maxJogadores" layoutX="249.0" layoutY="321.0" prefHeight="24.0" prefWidth="201.0" />
         <Label alignment="CENTER" layoutX="23.0" layoutY="322.0" prefHeight="30.0" prefWidth="181.0" text="Max Jogadores" textFill="#e16302">
             <font>
                 <Font size="24.0" />

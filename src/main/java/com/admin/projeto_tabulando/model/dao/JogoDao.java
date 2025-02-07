@@ -12,4 +12,6 @@ public interface JogoDao {
     boolean estaDisponivel (Jogo jogo);
     List<Jogo> procurarTodosDisponivel();
     Jogo procurarPorNome(String nome);
+    List<Jogo> procurarTodosJogando();
+    List<Jogo> procurarTodos();
 }

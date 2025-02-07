@@ -75,6 +75,31 @@ public class JogoDaoJDBC implements JogoDao {
 
 
     @Override
+    public List<Jogo> procurarTodos() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogo");
+            rs = st.executeQuery();
+
+            List<Jogo> lista = new ArrayList<>();
+
+            while (rs.next()) {
+                Jogo jogo = new Jogo(rs.getString("nome"), rs.getString("tipo"), rs.getInt("maxJogadores"));
+                jogo.setId(rs.getInt("ID_jogo"));
+                lista.add(jogo);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
+
+    @Override
     public List<Jogo> procurarTodosDisponivel() {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -99,6 +124,30 @@ public class JogoDaoJDBC implements JogoDao {
     }
 
     @Override
+    public List<Jogo> procurarTodosJogando() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogo WHERE disponivel = false");
+            rs = st.executeQuery();
+
+            List<Jogo> lista = new ArrayList<>();
+
+            while (rs.next()) {
+                Jogo jogo = new Jogo(rs.getString("nome"), rs.getString("tipo"), rs.getInt("maxJogadores"));
+                jogo.setId(rs.getInt("ID_jogo"));
+                lista.add(jogo);
+            }
+            return lista;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
+    }
+
+    @Override
     public Jogo procurarPorNome(String nome) {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -111,6 +160,7 @@ public class JogoDaoJDBC implements JogoDao {
 
             if(rs.next()){
                 jogo = new Jogo(nome, rs.getString("tipo"), rs.getInt("maxJogadores"));
+                jogo.setId(rs.getInt("ID_jogo"));
             }
 
 
@@ -119,6 +169,7 @@ public class JogoDaoJDBC implements JogoDao {
         }
         return jogo;
     }
+
 
     @Override
     public boolean estaDisponivel(Jogo jogo) {

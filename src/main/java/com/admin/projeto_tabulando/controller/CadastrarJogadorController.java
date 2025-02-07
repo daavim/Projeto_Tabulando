@@ -3,6 +3,7 @@ package com.admin.projeto_tabulando.controller;
 import com.admin.projeto_tabulando.Application;
 import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.entities.Jogador;
+import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
@@ -10,6 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,6 +31,8 @@ public class CadastrarJogadorController {
 
     @FXML
     private ImageView foto;
+
+    public static Stage stage;
 
     private File file;
 
@@ -48,9 +53,7 @@ public class CadastrarJogadorController {
         String senhaJogador = senha.getText();
 
         DaoFactory.createJogadorDao().registrarJogador(usuarioJogador, senhaJogador, jogador);
-        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        alerta.setTitle("Informação!");
-        alerta.setContentText((""));
+        Alerta.mostrarAlerta("Cadastrado", "Usuario cadastrado com sucesso!", null, Alert.AlertType.INFORMATION);
     }
 
 }
