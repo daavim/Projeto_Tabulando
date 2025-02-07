@@ -19,12 +19,16 @@ import java.nio.file.Path;
 public class CadastrarJogadorController {
     @FXML
     private TextField nome;
+
+    @FXML
+    private TextField usuario;
+
     @FXML
     private TextField senha;
-    @FXML
-    private DatePicker dataNascimento;
+
     @FXML
     private ImageView foto;
+
     private File file;
 
     @FXML
@@ -40,10 +44,10 @@ public class CadastrarJogadorController {
     public void salvarOnClicked(){
         Jogador jogador = new Jogador(nome.getText());
 
-        String nomeJogador = nome.getText();
+        String usuarioJogador = usuario.getText();
         String senhaJogador = senha.getText();
 
-        DaoFactory.createJogadorDao().registrarJogador(nomeJogador, senhaJogador, jogador);
+        DaoFactory.createJogadorDao().registrarJogador(usuarioJogador, senhaJogador, jogador);
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setTitle("Informação!");
         alerta.setContentText((""));
