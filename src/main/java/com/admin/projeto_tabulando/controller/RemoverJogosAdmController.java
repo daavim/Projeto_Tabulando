@@ -24,11 +24,6 @@ public class RemoverJogosAdmController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Jogo> lista = DaoFactory.createJogoDao().procurarTodos();
 
-        if (lista.isEmpty()) {
-            Alerta.mostrarAlerta(null, null, "Nenhum jogo cadastrado.", Alert.AlertType.WARNING);
-            return;
-        }
-
         ObservableList<String> obs = FXCollections.observableArrayList();
         for (Jogo jogo : lista) {
             obs.add(jogo.getNome());

@@ -3,7 +3,11 @@ package com.admin.projeto_tabulando.controller;
 import com.admin.projeto_tabulando.Application;
 import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import java.io.IOException;
+import java.util.List;
 
+import com.admin.projeto_tabulando.model.entities.Jogador;
+import com.admin.projeto_tabulando.model.entities.Jogo;
+import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -55,18 +59,37 @@ public class AdministracaoMonitorController {
 
     public void onAdicionarJogoClicked() throws IOException {
         stage = Application.newStage("adicionar-jogo-view.fxml");
+        stage.setResizable(false);
     }
 
     public void onRemoverJogoClicked() throws IOException {
+        List<Jogo> lista = DaoFactory.createJogoDao().procurarTodos();
+        if (lista.isEmpty()) {
+            Alerta.mostrarAlerta(null, null, "Nenhum jogo cadastrado.", Alert.AlertType.WARNING);
+            return;
+        }
         stage = Application.newStage("remover-jogos-adm-view.fxml");
+        stage.setResizable(false);
     }
 
     public void onEncerrarJogoClicked() throws IOException {
+        List<Jogo> lista = DaoFactory.createJogoDao().procurarTodosJogando();
+        if (lista.isEmpty()) {
+            Alerta.mostrarAlerta(null, null, "Nenhum jogo sendo jogado.", Alert.AlertType.WARNING);
+            return;
+        }
         stage = Application.newStage("encerrar-jogo-view.fxml");
+        stage.setResizable(false);
     }
 
     public void onExcluirJogadorClicked() throws IOException {
+        List<Jogador> lista = DaoFactory.createJogadorDao().procurarTodos();
+        if (lista.isEmpty()) {
+            Alerta.mostrarAlerta(null, null, "Nenhum jogador cadastrado.", Alert.AlertType.WARNING);
+            return;
+        }
         stage = Application.newStage("excluir-jogador-view.fxml");
+        stage.setResizable(false);
     }
 
     public static Stage getStage(){

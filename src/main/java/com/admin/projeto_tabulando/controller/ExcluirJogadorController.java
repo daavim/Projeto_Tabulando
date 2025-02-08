@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
@@ -17,17 +18,14 @@ import java.util.ResourceBundle;
 
 public class ExcluirJogadorController implements Initializable {
 
+
+
     @FXML
     private ComboBox<String> listaJogadores;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<Jogador> lista = DaoFactory.createJogadorDao().procurarTodos();
-
-        if (lista.isEmpty()) {
-            Alerta.mostrarAlerta(null, null, "Nenhum jogador cadastrado.", Alert.AlertType.WARNING);
-            return;
-        }
 
         ObservableList<String> obs = FXCollections.observableArrayList();
         for (Jogador jogador : lista) {

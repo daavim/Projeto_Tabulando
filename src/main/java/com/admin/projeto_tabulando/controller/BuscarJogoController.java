@@ -75,18 +75,23 @@ public class BuscarJogoController implements Initializable {
 
     @FXML
     public void onBuscarInformacoesClicked(){  // informações do jogo
-        if(jogosLista.getValue() != null){
-            jogo = DaoFactory.createJogoDao().procurarPorNome( jogosLista.getValue());
-            categoria.setText(jogo.getTipo());
-            maxJogadores.setText(String.valueOf(jogo.getMaxJogadores()));
-            //Image img = new Image(new ByteArrayInputStream(jogo.getFoto()));
-            //foto.setImage(img);
+        if(jogosLista.getValue() == null){
+            Alerta.mostrarAlerta("Jogo não selecionado.", null, "Selecione um jogo!", Alert.AlertType.INFORMATION);
+            return;
         }
+        jogo = DaoFactory.createJogoDao().procurarPorNome( jogosLista.getValue());
+        categoria.setText(jogo.getTipo());
+        maxJogadores.setText(String.valueOf(jogo.getMaxJogadores()));
     }
 
     @FXML
-    public void onEntrarClicked() throws IOException {   // Entrar na partida
+    public void onEntrarClicked() throws IOException {
+        if(jogosLista.getValue() == null || categoria.getText() == null || maxJogadores.getText() == null){
+            Alerta.mostrarAlerta("Dados inválidos", null, "Insira todos os campos!", Alert.AlertType.INFORMATION);
+            return;
+        }
         stage = Application.newStage("partidas-jogador-view.fxml");
+        stage.setResizable(false);
     }
 
 }

@@ -43,7 +43,8 @@ public class ApplicationController {
 
     @FXML
     public void menuItemBuscarOnClicked() throws IOException {
-        Application.newStage("buscar-jogo-view.fxml");
+        stage = Application.newStage("buscar-jogo-view.fxml");
+        stage.setResizable(false);
     }
 
     @FXML
@@ -63,6 +64,7 @@ public class ApplicationController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setResizable(false);
                 stage.show();
 
                 Stage currentStage = (Stage) usuario.getScene().getWindow();
@@ -76,6 +78,7 @@ public class ApplicationController {
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
+                stage.setResizable(false);
                 stage.show();
 
                 Stage currentStage = (Stage) usuario.getScene().getWindow();
@@ -89,22 +92,26 @@ public class ApplicationController {
 
     @FXML
     public void menuItemAdministracaoOnClicked() throws IOException {
-        Application.newStage("administracao-monitor-view.fxml");
+        stage = Application.newStage("administracao-monitor-view.fxml");
+        stage.setResizable(false);
     }
 
     @FXML
     public void menuItemJogosMonitoresOnClicked() throws IOException {
-        Application.newStage("jogos-monitor-view.fxml");
+        stage = Application.newStage("jogos-monitor-view.fxml");
+        stage.setResizable(false);
     }
 
     @FXML
     public void menuItemJogosOnClicked() throws IOException {
-        Application.newStage("jogos-jogador-view.fxml");
+        stage = Application.newStage("jogos-jogador-view.fxml");
+        stage.setResizable(false);
     }
 
     @FXML
     public void menuItemSairOnClicked() throws IOException {
-        Application.newStage("sair-jogador-view.fxml");
+        stage = Application.newStage("sair-jogador-view.fxml");
+        stage.setResizable(false);
     }
 
     public static Stage getStage(){

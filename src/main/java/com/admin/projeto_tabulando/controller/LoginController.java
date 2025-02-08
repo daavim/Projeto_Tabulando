@@ -49,7 +49,14 @@ public class LoginController {
     }
 
     public void menuBuscarJogoOnClicked() throws IOException {
+        List<Jogo> jogos = DaoFactory.createJogoDao().procurarTodosDisponivel();
+
+        if (jogos.isEmpty()) {
+            Alerta.mostrarAlerta(null, null, "Nenhum jogo disponível.", Alert.AlertType.WARNING);
+            return;
+        }
         stage = Application.newStage("buscar-jogo-view.fxml");
+        stage.setResizable(false);
     }
 
     public static Stage getStage(){
