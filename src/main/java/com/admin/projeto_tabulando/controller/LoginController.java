@@ -8,6 +8,9 @@ import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -55,8 +58,16 @@ public class LoginController {
             Alerta.mostrarAlerta(null, null, "Nenhum jogo disponível.", Alert.AlertType.WARNING);
             return;
         }
-        stage = Application.newStage("buscar-jogo-view.fxml");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/buscar-jogo-view.fxml"));
+        Parent root = loader.load();
+
+        BuscarJogoController buscarJogoController = loader.getController();
+        buscarJogoController.setNomeJogador(nome.getText());
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
         stage.setResizable(false);
+        stage.show();
     }
 
     public static Stage getStage(){

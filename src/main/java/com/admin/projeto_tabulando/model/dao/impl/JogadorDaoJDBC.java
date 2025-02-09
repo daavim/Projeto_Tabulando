@@ -5,6 +5,8 @@ import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.dao.JogadorDao;
 import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
+import com.admin.projeto_tabulando.utils.Alerta;
+import javafx.scene.control.Alert;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -31,7 +33,7 @@ public class JogadorDaoJDBC implements JogadorDao {
             if(rs.next()){
                 Jogador jogador = new Jogador(rs.getString("nome"));
                 jogador.setId(rs.getInt("ID_jogador"));
-                jogador.setJogoAtual((Jogo) rs.getObject("jogo_atual"));
+                jogador.setJogoAtual(rs.getInt("jogo_atual"));
                 jogador.setUsuario(rs.getString("usuario"));
                 return jogador;
             }
@@ -84,7 +86,10 @@ public class JogadorDaoJDBC implements JogadorDao {
             int linhasAfetadas = st.executeUpdate();
 
             if (linhasAfetadas > 0) {
-                jogador.setJogoAtual(jogo);
+                st = conn.prepareStatement("UPDATE Jogador SET jogo_atual = ? WHERE ID_jogador = ?");
+                st.setInt(1, jogo.getId());
+                st.setInt(2, jogador.getId());
+                st.executeUpdate();
                 return true;
             }
             return false;
@@ -96,15 +101,22 @@ public class JogadorDaoJDBC implements JogadorDao {
     }
 
     @Override
-    public void sairDoJogo(Jogador jogador, Jogo jogo) {
+    public void sairDoJogo(Jogador jogador) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogo = ? AND ID_jogador = ?");
-            st.setInt(1, jogo.getId());
-            st.setInt(2, jogador.getId());
-            st.executeUpdate();
+            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogador = ? AND ID_jogo = ?");
+            st.setInt(1, jogador.getId());
+            st.setInt(2, jogador.getJogoAtual());
+            int linhasAfetadas = st.executeUpdate();
 
-            jogador.setJogoAtual(null);
+            if (linhasAfetadas > 0) {
+                st = conn.prepareStatement("UPDATE Jogador SET jogo_atual = NULL WHERE ID_jogador = ? ");
+                st.setInt(1, jogador.getId());
+                st.executeUpdate();
+                Alerta.mostrarAlerta("Jogador saiu",null,"Jogador removido da partida com sucesso.", Alert.AlertType.INFORMATION);
+            } else {
+                Alerta.mostrarAlerta("Erro",null,"Não foi possivel remover o jogador.", Alert.AlertType.INFORMATION);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -156,6 +168,32 @@ public class JogadorDaoJDBC implements JogadorDao {
             throw new RuntimeException(e);
         }
         return jogador;
+    }
+
+
+    @Override
+    public List<Jogador> procurarTodosJogando(int id) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<Jogador> jogadores = new ArrayList<>();
+
+        try {
+            st = conn.prepareStatement("SELECT ID_jogador FROM Jogador_Jogo WHERE ID_jogo = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            while(rs.next()){
+                Jogador jogador = DaoFactory.createJogadorDao().procurarPorId(rs.getInt("ID_jogador"));
+                if (jogador!= null){
+                    jogadores.add(jogador);
+                }
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogadores;
     }
 
 }

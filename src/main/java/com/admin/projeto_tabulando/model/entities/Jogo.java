@@ -10,7 +10,7 @@ public class Jogo {
     private int maxJogadores;
     private List<Jogador> jogadores;
     private boolean disponivel;
-    private byte[]foto;
+
 
     public Jogo(String nome, String tipo, int maxJogadores) {
         this.nome = nome;
@@ -66,13 +66,5 @@ public class Jogo {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 }

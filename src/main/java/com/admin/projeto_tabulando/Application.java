@@ -1,6 +1,7 @@
 package com.admin.projeto_tabulando;
 
 import com.admin.projeto_tabulando.controller.ApplicationController;
+import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Optional;
 
 public class Application extends javafx.application.Application {
 
@@ -43,12 +45,9 @@ public class Application extends javafx.application.Application {
     }
 
     public void sair(Stage stage) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmacao");
-        alert.setHeaderText("Você está prestes a sair");
-        alert.setContentText("Deseja realmente sair?");
+        Optional alert = Alerta.mostrarAlerta("Confirmação", null,"Deseja realmente sair?", Alert.AlertType.CONFIRMATION);
 
-        if(alert.showAndWait().get() == ButtonType.OK){
+        if(alert.get() == ButtonType.OK){
             stage.close();
         }
 

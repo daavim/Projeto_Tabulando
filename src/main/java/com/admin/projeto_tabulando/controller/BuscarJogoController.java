@@ -2,11 +2,15 @@ package com.admin.projeto_tabulando.controller;
 
 import com.admin.projeto_tabulando.Application;
 import com.admin.projeto_tabulando.model.dao.DaoFactory;
+import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -37,12 +41,15 @@ public class BuscarJogoController implements Initializable {
     @FXML
     private ImageView foto;
 
-    @FXML
     public static Stage stage;
 
     Jogo jogo;
+    String nome;
 
-    File file;
+    public void setNomeJogador(String nomeJogador) {
+        nome = nomeJogador;
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,15 +69,6 @@ public class BuscarJogoController implements Initializable {
         jogosLista.setItems(obs);
     }
 
-    @FXML
-    public void onFotoClicked(){
-        FileChooser fc = new FileChooser();
-        file = fc.showOpenDialog(Application.getScene().getWindow());
-        if(file!=null){
-            foto.setImage(new Image(file.getAbsolutePath()));
-        }
-    }
-
 
 
     @FXML
@@ -86,12 +84,31 @@ public class BuscarJogoController implements Initializable {
 
     @FXML
     public void onEntrarClicked() throws IOException {
-        if(jogosLista.getValue() == null || categoria.getText() == null || maxJogadores.getText() == null){
-            Alerta.mostrarAlerta("Dados inválidos", null, "Insira todos os campos!", Alert.AlertType.INFORMATION);
+        if(jogosLista.getValue() == null){
+            Alerta.mostrarAlerta("Dados inválidos", null, "Insira o jogo que deseja jogar!", Alert.AlertType.INFORMATION);
             return;
         }
-        stage = Application.newStage("partidas-jogador-view.fxml");
+
+        Jogo jogo = DaoFactory.createJogoDao().procurarPorNome(jogosLista.getValue());
+        Jogador jogador = DaoFactory.createJogadorDao().procurarPorNome(nome);
+
+        DaoFactory.createJogadorDao().entrarNoJogo(jogador, jogo);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/partidas-jogador-view.fxml"));
+        Parent root = loader.load();
+
+        PartidasJogadorController partidaController = loader.getController();
+        partidaController.setNomeJogo(jogosLista.getValue());
+        partidaController.setUsuario(jogador);
+
+        Stage janelaAtual = (Stage) jogosLista.getScene().getWindow();
+        janelaAtual.close();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
         stage.setResizable(false);
+        stage.show();
+
     }
 
 }

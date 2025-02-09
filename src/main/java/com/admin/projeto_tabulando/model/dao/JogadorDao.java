@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface JogadorDao {
     boolean entrarNoJogo(Jogador jogador, Jogo jogo);
-    void sairDoJogo(Jogador jogador, Jogo jogo);
+    void sairDoJogo(Jogador jogador);
     void registrarJogador(String usuario, String senha, Jogador jogador);
     Jogador procurarPorId(int id);
     List<Jogador> procurarTodos();
     Jogador procurarPorNome(String nome);
+    List<Jogador> procurarTodosJogando(int id);
 }

@@ -6,12 +6,12 @@ public class Jogador {
     private int id;
     private String nome;
     private String usuario;
-    private Jogo jogoAtual;
+    private int jogoAtual;
     private List<Jogo> historico;
 
     public Jogador(String nome) {
         this.nome = nome;
-        this.jogoAtual = null;
+        this.jogoAtual = 0;
     }
 
     public String getNome() {
@@ -22,11 +22,11 @@ public class Jogador {
         this.nome = nome;
     }
 
-    public Jogo getJogoAtual() {
+    public int getJogoAtual() {
         return jogoAtual;
     }
 
-    public void setJogoAtual(Jogo jogoAtual) {
+    public void setJogoAtual(int jogoAtual) {
         this.jogoAtual = jogoAtual;
     }
 
