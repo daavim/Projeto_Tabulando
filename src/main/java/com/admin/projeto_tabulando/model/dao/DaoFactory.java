@@ -13,9 +13,6 @@ public interface DaoFactory {
     public static MonitorDao createMonitorDao(){
         return new MonitorDaoJDBC(DB.getConnection());
     }
-    public static SalaDeJogosDao createSalaDeJogosDao(){
-        return new SalaDeJogosDaoJDBC(DB.getConnection());
-    }
     public static AuthDao createAuthDao(){
         return new AuthDaoJDBC(DB.getConnection());
     }

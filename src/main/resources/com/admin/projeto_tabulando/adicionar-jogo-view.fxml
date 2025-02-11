@@ -3,44 +3,33 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="528.0" prefWidth="722.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.JogosAdministracaoController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.AdicionarJogosController">
     <children>
-        <ImageView fx:id="foto" accessibleText="Clique aqui para adicionar uma foto" fitHeight="150.0" fitWidth="142.0" layoutX="540.0" layoutY="186.0" pickOnBounds="true" preserveRatio="true" />
-        <Button layoutX="114.0" layoutY="468.0" mnemonicParsing="false" onAction="#adicionarOnClicked" text="Adicionar">
+        <Button layoutX="484.0" layoutY="345.0" mnemonicParsing="false" onAction="#adicionarOnClicked" opacity="0.83" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: f88622;" text="Adicionar" textFill="WHITE" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="98.0" prefHeight="45.0" prefWidth="549.0" text="ADICIONAR JOGO" textFill="#f88622">
             <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <Button layoutX="533.0" layoutY="468.0" mnemonicParsing="false" text="Voltar">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <Label alignment="CENTER" layoutX="119.0" layoutY="33.0" prefHeight="64.0" prefWidth="535.0" text="Adicionar Jogos" textFill="#e16302">
-            <font>
-                <Font size="36.0" />
+                <Font name="Gabriola" size="36.0" />
             </font>
         </Label>
-        <TextField fx:id="nome" layoutX="249.0" layoutY="174.0" prefHeight="24.0" prefWidth="201.0" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="174.0" prefHeight="21.0" prefWidth="91.0" text="Nome" textFill="#e16302">
+        <TextField fx:id="nome" layoutX="247.0" layoutY="194.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" />
+        <Label alignment="CENTER" layoutX="50.0" layoutY="191.0" opacity="0.83" prefHeight="30.0" prefWidth="181.0" text="Nome" textFill="#f88622">
             <font>
-                <Font size="24.0" />
+                <Font name="Comic Sans MS" size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="categoria" layoutX="249.0" layoutY="249.0" prefHeight="24.0" prefWidth="201.0" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="249.0" prefHeight="30.0" prefWidth="134.0" text="Categorias" textFill="#e16302">
+        <TextField fx:id="categoria" layoutX="247.0" layoutY="267.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-color: f88622; -fx-border-radius: 8px;" />
+        <Label alignment="CENTER" layoutX="50.0" layoutY="265.0" opacity="0.83" prefHeight="30.0" prefWidth="181.0" text="Categoria" textFill="#f88622">
             <font>
-                <Font size="24.0" />
+                <Font name="Comic Sans MS" size="24.0" />
             </font>
         </Label>
-        <TextField fx:id="maxJogadores" layoutX="249.0" layoutY="321.0" prefHeight="24.0" prefWidth="201.0" />
-        <Label alignment="CENTER" layoutX="23.0" layoutY="322.0" prefHeight="30.0" prefWidth="181.0" text="Max Jogadores" textFill="#e16302">
+        <TextField fx:id="maxJogadores" layoutX="247.0" layoutY="342.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" />
+        <Label alignment="CENTER" layoutX="50.0" layoutY="339.0" opacity="0.83" prefHeight="30.0" prefWidth="181.0" text="Max Jogadores" textFill="#f88622">
             <font>
-                <Font size="24.0" />
+                <Font name="Comic Sans MS" size="24.0" />
             </font>
         </Label>
     </children>

@@ -2,6 +2,8 @@ package com.admin.projeto_tabulando.model.dao.impl;
 import com.admin.projeto_tabulando.db.DB;
 import com.admin.projeto_tabulando.model.dao.AuthDao;
 import com.admin.projeto_tabulando.model.entities.Jogador;
+import com.admin.projeto_tabulando.utils.Alerta;
+import javafx.scene.control.Alert;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -17,6 +19,10 @@ public class AuthDaoJDBC implements AuthDao {
     }
 
     public Jogador autenticarJogador(String usuario, String senha) {
+        if (usuario == null || usuario.trim().isEmpty() || senha == null || senha.trim().isEmpty()) {
+            return null;
+        }
+
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
@@ -38,7 +44,7 @@ public class AuthDaoJDBC implements AuthDao {
                     return jogador;
                 }
             }
-            return null; // Usuário não encontrado
+            return null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

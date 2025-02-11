@@ -10,14 +10,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class EncerrarJogoController implements Initializable {
+
     @FXML
     private ComboBox<String> listaJogos;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -34,6 +37,18 @@ public class EncerrarJogoController implements Initializable {
         }
 
         listaJogos.setItems(obs);
+    }
+
+    @FXML
+    public void onEncerrarJogoClicked() {
+        Jogo jogo = DaoFactory.createJogoDao().procurarPorNome(listaJogos.getValue());
+        DaoFactory.createMonitorDao().encerrarJogo(jogo);
+
+        Stage janelaAtual = (Stage) listaJogos.getScene().getWindow();
+        janelaAtual.close();
+
+        Alerta.mostrarAlerta("Jogo", null, "Jogo encerrado com sucesso!", Alert.AlertType.INFORMATION);
+
     }
 
 }

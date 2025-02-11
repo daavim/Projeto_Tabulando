@@ -4,30 +4,33 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="scenePane" prefHeight="564.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.PartidasJogadorController">
     <children>
-        <Label alignment="CENTER" layoutX="180.0" layoutY="33.0" prefHeight="52.0" prefWidth="268.0" text="Partida -" textFill="#e16302">
+        <Label alignment="CENTER" layoutX="43.0" layoutY="91.0" prefHeight="42.0" prefWidth="673.0" text="PARTIDA" textFill="#f88622">
             <font>
-                <Font size="36.0" />
+                <Font name="Gabriola" size="35.0" />
             </font>
         </Label>
-        <Button layoutX="311.0" layoutY="489.0" mnemonicParsing="false" onAction="#onSairPartidaClicked" prefHeight="39.0" prefWidth="137.0" text="Sair do jogo">
+        <Button layoutX="138.0" layoutY="327.0" mnemonicParsing="false" onAction="#onSairPartidaClicked" opacity="0.83" prefHeight="20.0" prefWidth="130.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: f88622;" text="Sair do jogo" textFill="WHITE">
             <font>
-                <Font size="18.0" />
+                <Font size="15.0" />
             </font>
         </Button>
-          <Label fx:id="nomeJogo" layoutX="400.0" layoutY="33.0" text="dama" textFill="#e16302">
-              <font>
-                  <Font size="36.0" />
-              </font>
-          </Label>
-      <TableView fx:id="listaJogadores" layoutX="162.0" layoutY="146.0" prefHeight="272.0" prefWidth="436.0">
-        <columns>
-          <TableColumn fx:id="colunaNome" prefWidth="435.0" text="Nome dos Jogadores" />
-        </columns>
-      </TableView>
+        <TableView fx:id="listaJogadores" layoutX="362.0" layoutY="210.0" prefHeight="165.0" prefWidth="274.0" style="-fx-border-color: f88622;">
+            <columns>
+                <TableColumn fx:id="colunaNome" prefWidth="273.0" text="Jogadores na partida" />
+            </columns>
+        </TableView>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="219.0" opacity="0.83" prefHeight="24.0" prefWidth="48.0" text="Jogo" textFill="#f88622">
+            <font>
+                <Font name="Comic Sans MS" size="16.0" />
+            </font>
+        </Label>
+        <TextField fx:id="nomeJogo" layoutX="103.0" layoutY="263.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" />
+      <Label fx:id="numJogadores" layoutX="603.0" layoutY="41.0" text="Label" />
     </children>
 </AnchorPane>

@@ -18,25 +18,15 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
-public class AdministracaoMonitorController {
-    @FXML
-    private Button AdicionarNovoJogo;
-    @FXML
-    private Button RemoverJogo;
-    @FXML
-    private Button LiberarJogo;
-    @FXML
-    private Button ExpulsarJogador;
-    @FXML
-    private Button VerHistorico;
-    @FXML
-    private Button BotaoSair;
+public class PrincipalMonitorController {
+
     @FXML
     private AnchorPane scenePane;
     @FXML
     private Label nomeadm;
 
     public static Stage stage;
+
 
     public void setNomeAdmin(String nomeJogador) {
         nomeadm.setText(nomeJogador); // Define o texto do label
@@ -51,10 +41,8 @@ public class AdministracaoMonitorController {
 
         if(alert.showAndWait().get() == ButtonType.OK){
             stage = (Stage) scenePane.getScene().getWindow();
-            System.out.println("Saiu com sucesso");
             stage.close();
         }
-
     }
 
     public void onAdicionarJogoClicked() throws IOException {

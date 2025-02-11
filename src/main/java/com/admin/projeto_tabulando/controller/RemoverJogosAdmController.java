@@ -34,7 +34,7 @@ public class RemoverJogosAdmController implements Initializable {
 
 
     @FXML
-    public void onExcluirJogoClicked() {  // informações do jogo
+    public void onExcluirJogoClicked() {
         if (listaJogo.getValue() != null) {
             Jogo jogo = DaoFactory.createJogoDao().procurarPorNome(listaJogo.getValue());
             DaoFactory.createMonitorDao().removerJogo(jogo);

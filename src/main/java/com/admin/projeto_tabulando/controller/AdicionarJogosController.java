@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 import static com.admin.projeto_tabulando.utils.Alerta.mostrarAlerta;
 
-public class JogosAdministracaoController {
+public class AdicionarJogosController {
     @FXML
     private TextField nome;
     @FXML
@@ -19,7 +19,6 @@ public class JogosAdministracaoController {
     @FXML
     public void adicionarOnClicked() {
         try {
-            // Validação dos campos
             if (nome.getText().isEmpty() || categoria.getText().isEmpty() || maxJogadores.getText().isEmpty()) {
                 mostrarAlerta("Erro", null, "Todos os campos são obrigatórios!",Alert.AlertType.ERROR);
                 return;
@@ -27,19 +26,15 @@ public class JogosAdministracaoController {
 
             String nomeJogo = nome.getText();
             String categoriasJogo = categoria.getText();
-            int max_jogadores = Integer.parseInt(maxJogadores.getText()); // Converte String para int
+            int max_jogadores = Integer.parseInt(maxJogadores.getText());
 
-            // Criar um novo jogo
-            Jogo novoJogo = new Jogo(nomeJogo, categoriasJogo, max_jogadores); // Removido o boolean extra
 
-            // Adicionar jogo ao banco de dados corretamente
+            Jogo novoJogo = new Jogo(nomeJogo, categoriasJogo, max_jogadores);
 
             DaoFactory.createMonitorDao().adicionarJogo(nomeJogo, categoriasJogo, max_jogadores, novoJogo);
 
-            // Exibir mensagem de sucesso
             mostrarAlerta("Sucesso", null,"Jogo adicionado com sucesso!", Alert.AlertType.INFORMATION);
 
-            // Limpar os campos após a adição
             nome.clear();
             categoria.clear();
             maxJogadores.clear();

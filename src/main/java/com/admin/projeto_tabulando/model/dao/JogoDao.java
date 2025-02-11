@@ -7,11 +7,10 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface JogoDao {
-    boolean iniciarJogo (List<Jogador> jogador, Jogo jogo) throws SQLException;
-    void finalizarJogo (Jogo jogo);
-    boolean estaDisponivel (Jogo jogo);
     List<Jogo> procurarTodosDisponivel();
     Jogo procurarPorNome(String nome);
     List<Jogo> procurarTodosJogando();
     List<Jogo> procurarTodos();
+    void marcarComoIndisponivel(Jogo jogo);
+    void marcarComoDisponivel(Jogo jogo);
 }

@@ -1,8 +1,6 @@
 package com.admin.projeto_tabulando.model.dao;
 
-import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
-import com.admin.projeto_tabulando.model.entities.SalaDeJogos;
 
 public interface MonitorDao {
     void removerJogador(int id);

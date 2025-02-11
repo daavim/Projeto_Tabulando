@@ -1,6 +1,5 @@
 package com.admin.projeto_tabulando.controller;
 
-import com.admin.projeto_tabulando.Application;
 import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
@@ -13,17 +12,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -31,7 +24,7 @@ import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.stage.Stage;
 
 
-public class BuscarJogoController implements Initializable {
+public class EntrarJogoController implements Initializable {
     @FXML
     private ComboBox<String> jogosLista;
     @FXML
@@ -77,21 +70,32 @@ public class BuscarJogoController implements Initializable {
             Alerta.mostrarAlerta("Jogo não selecionado.", null, "Selecione um jogo!", Alert.AlertType.INFORMATION);
             return;
         }
-        jogo = DaoFactory.createJogoDao().procurarPorNome( jogosLista.getValue());
+        jogo = DaoFactory.createJogoDao().procurarPorNome(jogosLista.getValue());
         categoria.setText(jogo.getTipo());
         maxJogadores.setText(String.valueOf(jogo.getMaxJogadores()));
     }
 
     @FXML
     public void onEntrarClicked() throws IOException {
+
         if(jogosLista.getValue() == null){
-            Alerta.mostrarAlerta("Dados inválidos", null, "Insira o jogo que deseja jogar!", Alert.AlertType.INFORMATION);
+            Alerta.mostrarAlerta("Erro", null, "Insira o jogo que deseja jogar!", Alert.AlertType.INFORMATION);
             return;
         }
 
+        // Pega o Jogo e Jogador
         Jogo jogo = DaoFactory.createJogoDao().procurarPorNome(jogosLista.getValue());
         Jogador jogador = DaoFactory.createJogadorDao().procurarPorNome(nome);
 
+        //Retorna todos que estão jogando aquele jogo
+        List<Jogador> jogadoresNoJogo = DaoFactory.createJogadorDao().procurarTodosJogando(jogo.getId());
+
+        //Verifica se o jogo vai atingir o maximo de jogadores
+        if (jogadoresNoJogo.size() == jogo.getMaxJogadores() - 1) {
+            DaoFactory.createJogoDao().marcarComoIndisponivel(jogo);
+        }
+
+        //Jogador entra no jogo
         DaoFactory.createJogadorDao().entrarNoJogo(jogador, jogo);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/partidas-jogador-view.fxml"));
@@ -100,6 +104,7 @@ public class BuscarJogoController implements Initializable {
         PartidasJogadorController partidaController = loader.getController();
         partidaController.setNomeJogo(jogosLista.getValue());
         partidaController.setUsuario(jogador);
+        partidaController.atualizarDados();
 
         Stage janelaAtual = (Stage) jogosLista.getScene().getWindow();
         janelaAtual.close();

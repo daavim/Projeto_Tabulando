@@ -18,10 +18,9 @@ import java.util.ResourceBundle;
 
 public class ExcluirJogadorController implements Initializable {
 
-
-
     @FXML
     private ComboBox<String> listaJogadores;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

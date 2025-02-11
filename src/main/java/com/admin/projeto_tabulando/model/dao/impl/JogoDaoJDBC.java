@@ -17,62 +17,6 @@ public class JogoDaoJDBC implements JogoDao {
     }
 
 
-    @Override
-    public boolean iniciarJogo(List<Jogador> jogadores, Jogo jogo) throws SQLException {
-        PreparedStatement st = null;
-        try {
-            conn.setAutoCommit(false);
-
-            st = conn.prepareStatement("UPDATE jogo SET disponivel = false WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-
-            st = conn.prepareStatement("INSERT INTO Jogador_Jogo (ID_jogador, ID_jogo) VALUES ( ?, ? )");
-            for (Jogador jogador : jogadores) {
-                st.setInt(1, jogo.getId());
-                st.setInt(2, jogador.getId());
-                st.addBatch();
-            }
-            st.executeBatch();
-
-            conn.commit();
-            return true;
-
-        } catch (SQLException e){
-            try { conn.rollback(); } catch (SQLException ex) { /* Tratar erro */ }
-            throw new RuntimeException("Erro ao iniciar jogo", e);
-        } finally {
-            DB.closeStatement(st);
-            try { conn.setAutoCommit(true); } catch (SQLException e) { /* Tratar erro */ }
-        }
-
-    }
-
-    @Override
-    public void finalizarJogo(Jogo jogo) {
-        PreparedStatement st = null;
-        try {
-            conn.setAutoCommit(false);
-
-            st = conn.prepareStatement("UPDATE Jogo SET disponivel = true WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-
-            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-
-            conn.commit();
-
-        } catch (SQLException e) {
-            try { conn.rollback(); } catch (SQLException ex) { /* Tratar erro */ }
-            throw new RuntimeException(e);
-        } finally {
-            DB.closeStatement(st);
-            try { conn.setAutoCommit(true); } catch (SQLException e) { /* Tratar erro */ }
-        }
-    }
-
 
     @Override
     public List<Jogo> procurarTodos() {
@@ -163,17 +107,42 @@ public class JogoDaoJDBC implements JogoDao {
                 jogo.setId(rs.getInt("ID_jogo"));
             }
 
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return jogo;
     }
 
+    public void marcarComoIndisponivel(Jogo jogo){
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("UPDATE Jogo SET disponivel = false WHERE ID_jogo = ?");
+            st.setInt(1, jogo.getId());
+            st.executeUpdate();
 
-    @Override
-    public boolean estaDisponivel(Jogo jogo) {
-        return jogo.isDisponivel();
+            jogo.setDisponivel(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+        }
     }
+
+    public void marcarComoDisponivel(Jogo jogo){
+        PreparedStatement st = null;
+        try {
+            st = conn.prepareStatement("UPDATE Jogo SET disponivel = true WHERE ID_jogo = ?");
+            st.setInt(1, jogo.getId());
+            st.executeUpdate();
+
+            jogo.setDisponivel(true);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            DB.closeStatement(st);
+        }
+    }
+
+
 
 }

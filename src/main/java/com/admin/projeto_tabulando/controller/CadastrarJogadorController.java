@@ -29,21 +29,6 @@ public class CadastrarJogadorController {
     @FXML
     private TextField senha;
 
-    @FXML
-    private ImageView foto;
-
-    public static Stage stage;
-
-    private File file;
-
-    @FXML
-    public void fotoOnClicked(){
-        FileChooser fc = new FileChooser();
-        file = fc.showOpenDialog(Application.getScene().getWindow());
-        if(file!=null){
-            foto.setImage(new Image(file.getAbsolutePath()));
-        }
-    }
 
     @FXML
     public void salvarOnClicked(){
@@ -51,6 +36,24 @@ public class CadastrarJogadorController {
 
         String usuarioJogador = usuario.getText();
         String senhaJogador = senha.getText();
+
+        if (nome.getText().trim().isEmpty() || usuario.getText().trim().isEmpty() || senha.getText().trim().isEmpty()) {
+            Alerta.mostrarAlerta("Erro", "Campos inválidos", "Preencha todos os campos!", Alert.AlertType.ERROR);
+            return;
+        }
+        if (usuarioJogador.length() < 3) {
+            Alerta.mostrarAlerta("Erro", "Usuário inválido", "O nome de usuário deve ter pelo menos 3 caracteres!", Alert.AlertType.ERROR);
+            return;
+        }
+        if (DaoFactory.createJogadorDao().usuarioExiste(usuarioJogador)) {
+            Alerta.mostrarAlerta("Erro", "Usuário já cadastrado", "Este nome de usuário já está em uso. Escolha outro!", Alert.AlertType.ERROR);
+            return;
+        }
+
+        if (senhaJogador.length() < 6) {
+            Alerta.mostrarAlerta("Erro", "Senha inválida", "A senha deve ter pelo menos 6 caracteres!", Alert.AlertType.ERROR);
+            return;
+        }
 
         DaoFactory.createJogadorDao().registrarJogador(usuarioJogador, senhaJogador, jogador);
         Alerta.mostrarAlerta("Cadastrado", "Usuario cadastrado com sucesso!", null, Alert.AlertType.INFORMATION);

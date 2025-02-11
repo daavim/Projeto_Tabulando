@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="486.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.ExcluirJogadorController">
     <children>
-        <GridPane layoutX="14.0" layoutY="121.0" prefHeight="180.0" prefWidth="467.0">
+        <GridPane layoutX="126.0" layoutY="152.0" prefHeight="150.0" prefWidth="467.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="140.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="10.0" prefWidth="299.0" />
@@ -20,27 +20,22 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="131.0" text="Jogadores" textFill="#e16302">
+                <Label alignment="CENTER" prefHeight="30.0" prefWidth="131.0" text="Jogadores" textFill="#f88622">
                     <font>
-                        <Font size="24.0" />
+                        <Font name="Comic Sans MS" size="24.0" />
                     </font>
                 </Label>
                 <ComboBox fx:id="listaJogadores" prefHeight="24.0" prefWidth="336.0" GridPane.columnIndex="1" />
             </children>
         </GridPane>
-        <Label alignment="CENTER" layoutX="1.0" layoutY="30.0" prefHeight="30.0" prefWidth="779.0" text="Excluir Jogador" textFill="#e16302">
+        <Label alignment="CENTER" layoutX="1.0" layoutY="77.0" prefHeight="30.0" prefWidth="779.0" text="EXCLUIR JOGADOR" textFill="#f88622">
             <font>
-                <Font size="36.0" />
+                <Font name="Gabriola" size="36.0" />
             </font>
         </Label>
-        <Button layoutX="552.0" layoutY="387.0" mnemonicParsing="false" text="Voltar">
+        <Button layoutX="359.0" layoutY="313.0" mnemonicParsing="false" onAction="#onExcluirJogadorClicked" style="-fx-background-radius: 8PX; -fx-border-radius: 8PX; -fx-background-color: f88622;" text="Excluir" textFill="WHITE">
             <font>
-                <Font size="18.0" />
-            </font>
-        </Button>
-        <Button layoutX="152.0" layoutY="387.0" mnemonicParsing="false" onAction="#onExcluirJogadorClicked" text="Excluir">
-            <font>
-                <Font size="18.0" />
+                <Font name="Comic Sans MS" size="15.0" />
             </font>
         </Button>
     </children>

@@ -33,7 +33,6 @@ public class JogadorDaoJDBC implements JogadorDao {
             if(rs.next()){
                 Jogador jogador = new Jogador(rs.getString("nome"));
                 jogador.setId(rs.getInt("ID_jogador"));
-                jogador.setJogoAtual(rs.getInt("jogo_atual"));
                 jogador.setUsuario(rs.getString("usuario"));
                 return jogador;
             }
@@ -86,13 +85,8 @@ public class JogadorDaoJDBC implements JogadorDao {
             int linhasAfetadas = st.executeUpdate();
 
             if (linhasAfetadas > 0) {
-                st = conn.prepareStatement("UPDATE Jogador SET jogo_atual = ? WHERE ID_jogador = ?");
-                st.setInt(1, jogo.getId());
-                st.setInt(2, jogador.getId());
-                st.executeUpdate();
                 return true;
-            }
-            return false;
+            }return false;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -101,22 +95,14 @@ public class JogadorDaoJDBC implements JogadorDao {
     }
 
     @Override
-    public void sairDoJogo(Jogador jogador) {
+    public void sairDoJogo(Jogador jogador, Jogo jogo) {
         PreparedStatement st = null;
         try {
-            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogador = ? AND ID_jogo = ?");
+            st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogador = ? AND ID_jogo =?");
             st.setInt(1, jogador.getId());
-            st.setInt(2, jogador.getJogoAtual());
-            int linhasAfetadas = st.executeUpdate();
+            st.setInt(2, jogo.getId());
+            st.executeUpdate();
 
-            if (linhasAfetadas > 0) {
-                st = conn.prepareStatement("UPDATE Jogador SET jogo_atual = NULL WHERE ID_jogador = ? ");
-                st.setInt(1, jogador.getId());
-                st.executeUpdate();
-                Alerta.mostrarAlerta("Jogador saiu",null,"Jogador removido da partida com sucesso.", Alert.AlertType.INFORMATION);
-            } else {
-                Alerta.mostrarAlerta("Erro",null,"Não foi possivel remover o jogador.", Alert.AlertType.INFORMATION);
-            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
@@ -184,7 +170,7 @@ public class JogadorDaoJDBC implements JogadorDao {
 
             while(rs.next()){
                 Jogador jogador = DaoFactory.createJogadorDao().procurarPorId(rs.getInt("ID_jogador"));
-                if (jogador!= null){
+                if (jogador != null){
                     jogadores.add(jogador);
                 }
             }
@@ -194,6 +180,26 @@ public class JogadorDaoJDBC implements JogadorDao {
             throw new RuntimeException(e);
         }
         return jogadores;
+    }
+
+
+    public boolean usuarioExiste(String usuario) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogador WHERE usuario = ?");
+            st.setString(1, usuario);
+            rs = st.executeQuery();
+
+            return rs.next(); // Se existir um resultado, o usuário já está cadastrado
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar usuário existente: " + e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+            DB.closeResultSet(rs);
+        }
     }
 
 }

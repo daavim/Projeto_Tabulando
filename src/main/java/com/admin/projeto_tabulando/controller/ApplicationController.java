@@ -3,12 +3,12 @@ package com.admin.projeto_tabulando.controller;
 import com.admin.projeto_tabulando.Application;
 import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.entities.Jogador;
+import com.admin.projeto_tabulando.utils.Alerta;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -41,11 +41,6 @@ public class ApplicationController {
         Application.newStage("cadastrar-jogador-view.fxml");
     }
 
-    @FXML
-    public void menuItemBuscarOnClicked() throws IOException {
-        stage = Application.newStage("buscar-jogo-view.fxml");
-        stage.setResizable(false);
-    }
 
     @FXML
     public void menuItemLoginOnClicked() throws IOException {
@@ -56,10 +51,10 @@ public class ApplicationController {
         if (jogador != null) {
 
             if (usuarioJogador.equals("admin")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/administracao-monitor-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/principal-monitor-view.fxml"));
                 Parent root = loader.load();
 
-                AdministracaoMonitorController monitorController = loader.getController();
+                PrincipalMonitorController monitorController = loader.getController();
                 monitorController.setNomeAdmin(jogador.getNome());
 
                 Stage stage = new Stage();
@@ -70,11 +65,11 @@ public class ApplicationController {
                 Stage currentStage = (Stage) usuario.getScene().getWindow();
                 currentStage.close();
             } else {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/login-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/principal-view.fxml"));
                 Parent root = loader.load();
 
-                LoginController loginController = loader.getController();
-                loginController.setNomeJogador(jogador.getNome());
+                PrincipalController principalController = loader.getController();
+                principalController.setNomeJogador(jogador.getNome());
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
@@ -86,32 +81,8 @@ public class ApplicationController {
             }
 
         } else {
-            System.out.println("Credenciais inválidas");
+            Alerta.mostrarAlerta("Erro de login", "Credenciais inválidas", "Usuário ou senha incorretos. Tente Novamente", Alert.AlertType.ERROR);
         }
-    }
-
-    @FXML
-    public void menuItemAdministracaoOnClicked() throws IOException {
-        stage = Application.newStage("administracao-monitor-view.fxml");
-        stage.setResizable(false);
-    }
-
-    @FXML
-    public void menuItemJogosMonitoresOnClicked() throws IOException {
-        stage = Application.newStage("jogos-monitor-view.fxml");
-        stage.setResizable(false);
-    }
-
-    @FXML
-    public void menuItemJogosOnClicked() throws IOException {
-        stage = Application.newStage("jogos-jogador-view.fxml");
-        stage.setResizable(false);
-    }
-
-    @FXML
-    public void menuItemSairOnClicked() throws IOException {
-        stage = Application.newStage("sair-jogador-view.fxml");
-        stage.setResizable(false);
     }
 
     public static Stage getStage(){

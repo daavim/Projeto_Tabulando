@@ -2,9 +2,9 @@ package com.admin.projeto_tabulando.model.dao.impl;
 
 import com.admin.projeto_tabulando.db.DB;
 import com.admin.projeto_tabulando.model.dao.MonitorDao;
-import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
-import com.admin.projeto_tabulando.model.entities.SalaDeJogos;
+import com.admin.projeto_tabulando.utils.Alerta;
+import javafx.scene.control.Alert;
 
 import java.sql.*;
 
@@ -38,7 +38,7 @@ public class MonitorDaoJDBC implements MonitorDao {
             st.setInt(1, jogo.getId());
             st.executeUpdate();
 
-            st = conn.prepareStatement("UPDATE Jogo SET Disponivel = true WHERE ID_Jogo = ?");
+            st = conn.prepareStatement("UPDATE Jogo SET disponivel = true WHERE ID_Jogo = ?");
             st.setInt(1, jogo.getId());
             st.executeUpdate();
         } catch (SQLException e) {
@@ -86,17 +86,15 @@ public class MonitorDaoJDBC implements MonitorDao {
                 st = conn.prepareStatement("DELETE FROM Jogador_Jogo WHERE ID_jogo = ?");
                 st.setInt(1, jogo.getId());
                 st.executeUpdate();
+
+                st = conn.prepareStatement("DELETE FROM Jogo WHERE ID_jogo = ?");
+                st.setInt(1, jogo.getId());
+                st.executeUpdate();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }
-
-        try {
-            st = conn.prepareStatement("DELETE FROM Jogo WHERE ID_jogo = ?");
-            st.setInt(1, jogo.getId());
-            st.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } else {
+            Alerta.mostrarAlerta("Jogo em andamento.", null, "Encerre o jogo para poder excluí-lo!", Alert.AlertType.INFORMATION);
         }
     }
 }

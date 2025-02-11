@@ -2,11 +2,9 @@ package com.admin.projeto_tabulando.model.entities;
 
 public class Monitor {
     private String nome;
-    private SalaDeJogos sala;
 
-    public Monitor(String nome, SalaDeJogos sala) {
+    public Monitor(String nome) {
         this.nome = nome;
-        this.sala = sala;
     }
 
     public String getNome() {
