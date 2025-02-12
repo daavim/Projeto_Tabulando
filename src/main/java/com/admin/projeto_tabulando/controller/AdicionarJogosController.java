@@ -5,6 +5,7 @@ import com.admin.projeto_tabulando.model.entities.Jogo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import static com.admin.projeto_tabulando.utils.Alerta.mostrarAlerta;
 
@@ -35,9 +36,9 @@ public class AdicionarJogosController {
 
             mostrarAlerta("Sucesso", null,"Jogo adicionado com sucesso!", Alert.AlertType.INFORMATION);
 
-            nome.clear();
-            categoria.clear();
-            maxJogadores.clear();
+            Stage janelaAtual = (Stage) nome.getScene().getWindow();
+            janelaAtual.close();
+
 
         } catch (NumberFormatException e) {
             mostrarAlerta("Erro", null,"O número máximo de jogadores deve ser um número válido!", Alert.AlertType.ERROR);

@@ -32,7 +32,7 @@ public class EncerrarJogoController implements Initializable {
         }
 
         ObservableList<String> obs = FXCollections.observableArrayList();
-        for (Jogo jogo : lista) {
+        for (Jogo jogo: lista) {
             obs.add(jogo.getNome());
         }
 

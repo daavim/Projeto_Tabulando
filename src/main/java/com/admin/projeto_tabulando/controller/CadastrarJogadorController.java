@@ -57,6 +57,9 @@ public class CadastrarJogadorController {
 
         DaoFactory.createJogadorDao().registrarJogador(usuarioJogador, senhaJogador, jogador);
         Alerta.mostrarAlerta("Cadastrado", "Usuario cadastrado com sucesso!", null, Alert.AlertType.INFORMATION);
+
+        Stage janelaAtual = (Stage) nome.getScene().getWindow();
+        janelaAtual.close();
     }
 
 }

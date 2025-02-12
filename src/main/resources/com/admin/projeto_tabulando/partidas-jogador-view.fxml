@@ -30,7 +30,7 @@
                 <Font name="Comic Sans MS" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="nomeJogo" layoutX="103.0" layoutY="263.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" />
+        <TextField fx:id="nomeJogo" alignment="CENTER" editable="false" layoutX="103.0" layoutY="263.0" prefHeight="30.0" prefWidth="200.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" />
       <Label fx:id="numJogadores" layoutX="603.0" layoutY="41.0" text="Label" />
     </children>
 </AnchorPane>

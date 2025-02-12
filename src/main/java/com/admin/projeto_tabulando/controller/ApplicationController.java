@@ -62,8 +62,8 @@ public class ApplicationController {
                 stage.setResizable(false);
                 stage.show();
 
-                Stage currentStage = (Stage) usuario.getScene().getWindow();
-                currentStage.close();
+                Stage janelaAtual = (Stage) usuario.getScene().getWindow();
+                janelaAtual.close();
             } else {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/admin/projeto_tabulando/principal-view.fxml"));
                 Parent root = loader.load();
@@ -76,8 +76,8 @@ public class ApplicationController {
                 stage.setResizable(false);
                 stage.show();
 
-                Stage currentStage = (Stage) usuario.getScene().getWindow();
-                currentStage.close();
+                Stage janelaAtual = (Stage) usuario.getScene().getWindow();
+                janelaAtual.close();
             }
 
         } else {

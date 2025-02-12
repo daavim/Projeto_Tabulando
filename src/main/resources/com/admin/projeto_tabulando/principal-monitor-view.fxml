@@ -6,48 +6,48 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="scenePane" prefHeight="538.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.PrincipalMonitorController">
+<AnchorPane fx:id="scenePane" prefHeight="538.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.admin.projeto_tabulando.controller.PrincipalMonitorController">
     <children>
-        <Label alignment="CENTER" layoutX="144.0" layoutY="31.0" prefHeight="38.0" prefWidth="199.0" text="Bem-vindo, " textFill="#ee5a0a">
+        <Label alignment="CENTER" layoutX="129.0" layoutY="45.0" prefHeight="41.0" prefWidth="192.0" text="BEM VINDO" textFill="#f88622">
             <font>
-                <Font name="Comic Sans MS" size="27.0" />
+                <Font name="Gabriola" size="29.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="14.0" layoutY="93.0" prefHeight="40.0" prefWidth="158.0" text="Gerenciar Jogos">
+        <Label alignment="CENTER" contentDisplay="BOTTOM" layoutX="201.0" layoutY="107.0" opacity="0.83" prefHeight="40.0" prefWidth="199.0" text="Gerenciar Jogos" textFill="#f88622">
             <font>
                 <Font name="Comic Sans MS" size="20.0" />
             </font>
         </Label>
-        <Button layoutX="31.0" layoutY="143.0" mnemonicParsing="false" onAction="#onAdicionarJogoClicked" text="Adicionar jogo">
+        <Button layoutX="236.0" layoutY="157.0" mnemonicParsing="false" onAction="#onAdicionarJogoClicked" opacity="0.83" prefHeight="28.0" prefWidth="128.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" text="Adicionar jogo">
             <font>
-                <Font name="Comic Sans MS" size="14.0" />
+                <Font name="Comic Sans MS" size="13.0" />
             </font></Button>
-        <Button layoutX="31.0" layoutY="188.0" mnemonicParsing="false" onAction="#onRemoverJogoClicked" prefHeight="31.0" prefWidth="113.0" text="Remover Jogo">
+        <Button layoutX="237.0" layoutY="200.0" mnemonicParsing="false" onAction="#onRemoverJogoClicked" opacity="0.83" prefHeight="29.0" prefWidth="128.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" text="Remover Jogo">
             <font>
-                <Font name="Comic Sans MS" size="14.0" />
+                <Font name="Comic Sans MS" size="13.0" />
             </font></Button>
-        <Button layoutX="31.0" layoutY="238.0" mnemonicParsing="false" onAction="#onEncerrarJogoClicked" prefHeight="31.0" prefWidth="113.0" text="Liberar Jogo">
+        <Button layoutX="237.0" layoutY="240.0" mnemonicParsing="false" onAction="#onEncerrarJogoClicked" opacity="0.83" prefHeight="29.0" prefWidth="128.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" text="Encerrar Partida">
             <font>
-                <Font name="Comic Sans MS" size="14.0" />
+                <Font name="Comic Sans MS" size="13.0" />
             </font></Button>
-        <Label alignment="CENTER" layoutX="14.0" layoutY="289.0" prefHeight="36.0" prefWidth="199.0" text="Gerenciar Jogadores">
+        <Label alignment="CENTER" layoutX="201.0" layoutY="331.0" opacity="0.83" prefHeight="36.0" prefWidth="199.0" text="Gerenciar Jogadores" textFill="#f88622">
             <font>
                 <Font name="Comic Sans MS" size="20.0" />
             </font>
         </Label>
-        <Button layoutX="31.0" layoutY="357.0" mnemonicParsing="false" onAction="#onExcluirJogadorClicked" prefHeight="31.0" prefWidth="139.0" text="Excluir Jogador">
+        <Button layoutX="242.0" layoutY="384.0" mnemonicParsing="false" onAction="#onExcluirJogadorClicked" prefHeight="33.0" prefWidth="117.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-border-color: f88622;" text="Excluir Jogador">
             <font>
-                <Font name="Comic Sans MS" size="14.0" />
+                <Font name="Comic Sans MS" size="13.0" />
             </font></Button>
-        <Button alignment="CENTER" layoutX="232.0" layoutY="473.0" mnemonicParsing="false" onAction="#menuItemSairOnClicked" prefHeight="27.0" prefWidth="139.0" text="Sair">
+        <Button alignment="CENTER" layoutX="260.0" layoutY="462.0" mnemonicParsing="false" onAction="#menuItemSairOnClicked" opacity="0.83" prefHeight="27.0" prefWidth="80.0" style="-fx-background-radius: 8px; -fx-border-radius: 8px; -fx-background-color: f88622;" text="Sair" textFill="WHITE">
             <font>
-                <Font size="18.0" />
+                <Font name="Comic Sans MS" size="13.0" />
             </font>
         </Button>
-        <Separator layoutX="-1.0" layoutY="445.0" prefHeight="6.0" prefWidth="603.0" />
-      <Label fx:id="nomeadm" alignment="CENTER" layoutX="313.0" layoutY="31.0" prefHeight="38.0" prefWidth="199.0" textFill="#ee5a0a">
+        <Separator layoutX="42.0" layoutY="306.0" prefHeight="3.0" prefWidth="530.0" />
+      <Label fx:id="nomeadm" alignment="CENTER" layoutX="300.0" layoutY="45.0" prefHeight="41.0" prefWidth="153.0" text="Nome" textFill="#f88622">
          <font>
-            <Font name="Comic Sans MS" size="27.0" />
+            <Font name="Gabriola" size="29.0" />
          </font>
       </Label>
     </children>

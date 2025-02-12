@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
@@ -39,6 +40,9 @@ public class RemoverJogosAdmController implements Initializable {
             Jogo jogo = DaoFactory.createJogoDao().procurarPorNome(listaJogo.getValue());
             DaoFactory.createMonitorDao().removerJogo(jogo);
             Alerta.mostrarAlerta("Exclusão de jogo", null, "Jogo excluido com sucesso!", Alert.AlertType.INFORMATION);
+
+            Stage janelaAtual = (Stage) listaJogo.getScene().getWindow();
+            janelaAtual.close();
         }
     }
 }

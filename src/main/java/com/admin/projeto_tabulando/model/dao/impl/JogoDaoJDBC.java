@@ -1,6 +1,7 @@
 package com.admin.projeto_tabulando.model.dao.impl;
 
 import com.admin.projeto_tabulando.db.DB;
+import com.admin.projeto_tabulando.model.dao.DaoFactory;
 import com.admin.projeto_tabulando.model.dao.JogoDao;
 import com.admin.projeto_tabulando.model.entities.Jogador;
 import com.admin.projeto_tabulando.model.entities.Jogo;
@@ -72,15 +73,16 @@ public class JogoDaoJDBC implements JogoDao {
         PreparedStatement st = null;
         ResultSet rs = null;
         try {
-            st = conn.prepareStatement("SELECT * FROM Jogo WHERE disponivel = false");
+            st = conn.prepareStatement("SELECT * FROM Jogador_Jogo");
             rs = st.executeQuery();
 
             List<Jogo> lista = new ArrayList<>();
 
             while (rs.next()) {
-                Jogo jogo = new Jogo(rs.getString("nome"), rs.getString("tipo"), rs.getInt("maxJogadores"));
-                jogo.setId(rs.getInt("ID_jogo"));
-                lista.add(jogo);
+                if (!lista.contains(rs.getInt("ID_jogo"))){
+                    Jogo jogo = DaoFactory.createJogoDao().procurarPorId(rs.getInt("ID_jogo"));
+                    lista.add(jogo);
+                }
             }
             return lista;
         } catch (SQLException e) {
@@ -104,6 +106,28 @@ public class JogoDaoJDBC implements JogoDao {
 
             if(rs.next()){
                 jogo = new Jogo(nome, rs.getString("tipo"), rs.getInt("maxJogadores"));
+                jogo.setId(rs.getInt("ID_jogo"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return jogo;
+    }
+
+    @Override
+    public Jogo procurarPorId(int id) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        Jogo jogo = null;
+
+        try {
+            st = conn.prepareStatement("SELECT * FROM Jogo WHERE ID_jogo = ?");
+            st.setInt(1, id);
+            rs = st.executeQuery();
+
+            if(rs.next()){
+                jogo = new Jogo(rs.getString("nome"), rs.getString("tipo"), rs.getInt("maxJogadores"));
                 jogo.setId(rs.getInt("ID_jogo"));
             }
 

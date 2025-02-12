@@ -13,4 +13,5 @@ public interface JogoDao {
     List<Jogo> procurarTodos();
     void marcarComoIndisponivel(Jogo jogo);
     void marcarComoDisponivel(Jogo jogo);
+    Jogo procurarPorId(int id);
 }

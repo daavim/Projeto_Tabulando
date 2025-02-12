@@ -40,6 +40,9 @@ public class ExcluirJogadorController implements Initializable {
             Jogador jogador = DaoFactory.createJogadorDao().procurarPorNome(listaJogadores.getValue());
             DaoFactory.createMonitorDao().removerJogador(jogador.getId());
             Alerta.mostrarAlerta("Exclusão de jogador", null, "Jogador excluido com sucesso!",Alert.AlertType.INFORMATION);
+
+            Stage janelaAtual = (Stage) listaJogadores.getScene().getWindow();
+            janelaAtual.close();
         }
     }
 
